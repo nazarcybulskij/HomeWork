@@ -1,3 +1,6 @@
+import re
+from symbol import return_stmt
+import math
 
 file_data=open('data');
 
@@ -51,6 +54,69 @@ def fun_5(input):
     print ','.join(str(x) for x in res);
 
 fun_5(file_data.readline())
+
+
+def fun_6(input):
+    print input;
+    str_array_input=input.split(',')
+    reg2 = re.compile(r'\s');
+    reg1=re.compile(r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{4,6}$")
+    res=[]
+    for  x in str_array_input:
+        if re.search(reg1,x):
+             if not re.search(reg2,x):
+                res.append(x)
+    print ','.join(str(x) for x in res);
+
+fun_6(file_data.readline())
+
+
+def fun_7(input):
+
+    def validator(R,G,B):
+       if (R>255 or G>255 or B>255):
+           return "INVALID"
+       return   '#%02x%02x%02x' % (R, G, B)
+
+    print input;
+    str_array_input=input.split(',')
+    res=[]
+    for  x in str_array_input:
+        rgb_dec=x.split('-')
+        value=validator(int(rgb_dec[0]), int(rgb_dec[1]), int(rgb_dec[2]))
+        res.append(value)
+    print ','.join(str(x) for x in res);
+
+fun_7(file_data.readline())
+
+def fun_8(input):
+
+    def OptimalPrice(demand):
+        C=50;
+        H=30;
+        return int(round(math.sqrt((2*C*demand)/H),0));
+
+    print input;
+    str_array_input=input.split(',')
+    res=[OptimalPrice(int(str_array_input[y])) for y in xrange(0,len(str_array_input))]
+    print ','.join(str(x) for x in res);
+
+fun_8(file_data.readline())
+
+def fun_9(input):
+    print input
+    str_array_input=input.split(',')
+    res=sorted(str_array_input)
+    print ','.join(x for x in res);
+
+fun_9(file_data.readline())
+
+
+
+
+
+
+
 
 
 
